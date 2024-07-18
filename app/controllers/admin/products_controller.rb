@@ -1,9 +1,9 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < AdminController
   before_action :set_admin_product, only: %i[ show edit update destroy ]
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products = Admin::Product.all
+    @admin_products = Product.all
   end
 
   # GET /admin/products/1 or /admin/products/1.json
@@ -12,7 +12,7 @@ class Admin::ProductsController < ApplicationController
 
   # GET /admin/products/new
   def new
-    @admin_product = Admin::Product.new
+    @admin_product = Product.new
   end
 
   # GET /admin/products/1/edit
@@ -65,6 +65,6 @@ class Admin::ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, :active)
+      params.require(:product).permit(:name, :description, :price, :category_id, :active, images: [])
     end
 end
